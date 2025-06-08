@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Card, Spinner, Badge, Button, Tabs, Tab } from "react-bootstrap";
-import { FaUsers, FaTasks, FaCalendarAlt, FaUserTie, FaChartLine, FaBuilding, FaUserPlus, FaEdit, FaEye, FaArrowLeft, FaUserShield, FaUserCog, FaExchangeAlt } from "react-icons/fa";
+import { FaUsers, FaTasks, FaCalendarAlt, FaUserTie, FaChartLine, FaBuilding, FaUserPlus, FaEdit, FaEye, FaArrowLeft, FaUserShield, FaUserCog } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import userContext from "../../context/userContext";
-import LaborSharing from "../components/LaborSharing";
 import "./Admin.css";
 
 const Admin = () => {
@@ -103,15 +102,18 @@ const Admin = () => {
     navigate(-1);
   };
 
+  const getInitials = (name) => {
+    if (!name) return '';
+    const parts = name.trim().split(' ');
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
+
   const renderEmployeeCard = (employee) => (
     <Card key={employee._id} className="employee-card">
       <Card.Body>
         <div className="employee-avatar">
-          {employee.image ? (
-            <img src={employee.image} alt={employee.name} />
-          ) : (
-            <div className="avatar-placeholder">{employee.name.charAt(0)}</div>
-          )}
+          <div className="avatar-placeholder">{getInitials(employee.name)}</div>
         </div>
         <div className="employee-info">
           <h5>{employee.name}</h5>
@@ -121,7 +123,7 @@ const Admin = () => {
             <Link to={`/user-profile/${employee._id}`} className="btn btn-sm btn-outline-primary me-2">
               <FaEye className="me-1" /> View
             </Link>
-            <Link to={`/edit-employee/${employee._id}`} className="btn btn-sm btn-outline-secondary">
+            <Link to={`/edit/${employee._id}`} className="btn btn-sm btn-outline-secondary">
               <FaEdit className="me-1" /> Edit
             </Link>
           </div>
@@ -344,9 +346,6 @@ const Admin = () => {
         </Tab>
         <Tab eventKey="employees" title="Employee Directory">
           {renderEmployeeDirectory()}
-        </Tab>
-        <Tab eventKey="labor-sharing" title="Labor Sharing">
-          <LaborSharing employees={employees} />
         </Tab>
       </Tabs>
     </Container>

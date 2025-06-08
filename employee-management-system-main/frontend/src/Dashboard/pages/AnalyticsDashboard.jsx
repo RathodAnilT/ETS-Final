@@ -105,7 +105,9 @@ const AnalyticsDashboard = () => {
           acc[status].count += 1;
           acc[status].tasks.push({
             title: task.title,
-            assignedTo: task.assignedTo?.name || 'Unassigned',
+            assignedTo: Array.isArray(task.assignedTo) && task.assignedTo.length > 0 
+                          ? task.assignedTo.map(assignee => assignee.name).join(', ') 
+                          : task.assignedTo?.name || 'Unassigned',
             assignedBy: task.createdBy?.name || 'Unknown',
             approver: task.approvedBy?.name || 'Not Approved',
             dueDate: task.dueDate,
@@ -164,7 +166,9 @@ const AnalyticsDashboard = () => {
         // Create calendar events from tasks and leaves with employee names
         const events = [
           ...tasks.map(task => ({
-            title: `Task: ${task.title} (Assigned to: ${task.assignedTo?.name || 'Unassigned'})`,
+            title: `Task: ${task.title} (Assigned to: ${Array.isArray(task.assignedTo) && task.assignedTo.length > 0 
+                                                      ? task.assignedTo.map(assignee => assignee.name).join(', ') 
+                                                      : task.assignedTo?.name || 'Unassigned'})`,
             start: new Date(task.dueDate || task.createdAt),
             end: new Date(task.dueDate || task.updatedAt),
             type: 'task',
@@ -343,7 +347,9 @@ const AnalyticsDashboard = () => {
       status.tasks.forEach(task => {
         taskSheet.addRow({
           title: task.title,
-          assignedTo: task.assignedTo,
+          assignedTo: Array.isArray(task.assignedTo) && task.assignedTo.length > 0 
+                        ? task.assignedTo.map(assignee => assignee.name).join(', ') 
+                        : task.assignedTo || 'Unassigned',
           assignedBy: task.assignedBy,
           approver: task.approver,
           dueDate: task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'N/A',

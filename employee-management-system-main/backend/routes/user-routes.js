@@ -28,8 +28,6 @@ userRoutes.use(checkAuth);
 
 userRoutes.patch(
   "/editEmployee/:uid",
-  upload.single("image"),
-  handleMulterError,
   editEmployee
 );
 

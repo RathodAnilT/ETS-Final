@@ -127,68 +127,6 @@ const VideoSection = () => {
   );
 };
 
-const QuickActions = () => {
-  const actions = [
-    { 
-      title: 'Submit Report', 
-      icon: <FaFileAlt />, 
-      link: '/reports',
-      description: 'Create and submit your reports',
-      gradient: 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)'
-    },
-    { 
-      title: 'Request Leave', 
-      icon: <FaCalendarCheck />, 
-      link: '/leave',
-      description: 'Apply for time off and view status',
-      gradient: 'linear-gradient(135deg, #2196F3 0%, #1976D2 100%)'
-    },
-    { 
-      title: 'View Calendar', 
-      icon: <FaCalendarAlt />, 
-      link: '/calendar',
-      description: 'Check your schedule and events',
-      gradient: 'linear-gradient(135deg, #FF9800 0%, #F57C00 100%)'
-    },
-    { 
-      title: 'Help Center', 
-      icon: <FaBook />, 
-      link: '/help',
-      description: 'Get support and assistance',
-      gradient: 'linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%)'
-    }
-  ];
-
-  return (
-    <div className="quick-actions">
-      <SectionHeading 
-        title="Quick Actions" 
-        subtitle="Access frequently used features"
-      />
-      <Row>
-        {actions.map((action, index) => (
-          <Col key={index} lg={3} md={6} className="mb-4">
-            <Link to={action.link} className="action-card">
-              <Card>
-                <Card.Body>
-                  <div className="action-icon" style={{ background: action.gradient }}>
-                    {action.icon}
-                  </div>
-                  <h3>{action.title}</h3>
-                  <p>{action.description}</p>
-                  <div className="action-arrow">
-                    <FaArrowRight />
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-    </div>
-  );
-};
-
 const ResourceCenter = () => {
   const resources = [
     { 
@@ -441,8 +379,6 @@ const Home = () => {
               </Col>
             ))}
           </Row>
-          
-          <QuickActions />
           
           <ResourceCenter />
 

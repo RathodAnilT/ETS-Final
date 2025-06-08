@@ -181,18 +181,12 @@ const displayUser = async (req, res, next) => {
 
 const editEmployee = async (req, res, next) => {
   try {
-  const { email, name, position, phone, address, aadhar, panNo } = req.body;
-  const uid = req.params.uid;
+    const { email, name, position, phone, address, aadhar, panNo } = req.body;
+    const uid = req.params.uid;
 
     console.log('Edit Employee Request:', {
       uid,
-      body: req.body,
-      file: req.file ? {
-        filename: req.file.filename,
-        path: req.file.path,
-        size: req.file.size,
-        mimetype: req.file.mimetype
-      } : 'No file uploaded'
+      body: req.body
     });
 
     // Validate required fields
@@ -203,65 +197,46 @@ const editEmployee = async (req, res, next) => {
       });
     }
 
-  let user;
-  try {
-    user = await userModel.findById(uid);
+    let user;
+    try {
+      user = await userModel.findById(uid);
       if (!user) {
         return res.status(404).json({
           message: "User not found",
           success: false
         });
       }
-  } catch (error) {
+    } catch (error) {
       console.error("Error finding user:", error);
       return res.status(500).json({
         message: "Error finding user",
         success: false
       });
-  }
-
-    // Update user fields
-  user.name = name;
-  user.email = email;
-  user.position = position;
-  user.phone = phone;
-  user.address = address;
-  user.aadhar = aadhar;
-  user.panNo = panNo;
-
-    // Handle image upload
-    if (req.file) {
-      try {
-        // Delete old image if it exists and is not the default image
-        if (user.image && user.image !== "uploads/images/user-default.jpg") {
-          const oldImagePath = path.join(__dirname, "..", user.image);
-          if (fs.existsSync(oldImagePath)) {
-            fs.unlink(oldImagePath, (err) => {
-              if (err) console.error("Error deleting old image:", err);
-            });
-          }
-        }
-
-        // Store the relative path in the database
-        const relativePath = path.relative(path.join(__dirname, ".."), req.file.path).replace(/\\/g, "/");
-        user.image = relativePath;
-        console.log('Updated image path:', relativePath);
-      } catch (error) {
-        console.error("Error handling image upload:", error);
-        return res.status(500).json({
-          message: "Error uploading image",
-          success: false
-        });
-      }
     }
 
-  try {
-    await user.save();
+    // Encrypt sensitive data
+    const { encAadhar, encPan } = encryptData(
+      user.password, // Keep existing password
+      aadhar,
+      panNo,
+      secretKey
+    );
+
+    // Update user fields
+    user.name = name;
+    user.email = email;
+    user.position = position;
+    user.phone = phone;
+    user.address = address;
+    user.aadhar = encAadhar;
+    user.panNo = encPan;
+
+    try {
+      await user.save();
       console.log('User updated successfully:', {
         id: user._id,
         name: user.name,
-        email: user.email,
-        image: user.image
+        email: user.email
       });
       
       return res.status(200).json({

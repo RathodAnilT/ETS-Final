@@ -35,6 +35,12 @@
   background: #00ff88;
 }
 
+.contact-info {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 .contact-info p {
   display: flex;
   align-items: flex-start;

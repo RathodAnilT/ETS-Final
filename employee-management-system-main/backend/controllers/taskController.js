@@ -976,38 +976,36 @@ exports.getPendingCompletionRequests = async (req, res) => {
 
 // Get tasks created by a specific user
 exports.getTasksByUserCreated = async (req, res) => {
+  console.log('getTasksByUserCreated: Received request');
   try {
-    const userId = req.params.userId;
-    
-    // Check if user exists
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({
+    const { userId } = req.params;
+
+    console.log(`getTasksByUserCreated: Fetching tasks for userId: ${userId}`);
+
+    // Validate if userId is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      console.log(`getTasksByUserCreated: Invalid userId format: ${userId}`);
+      return res.status(400).json({
         success: false,
-        message: 'User not found'
+        message: "Invalid user ID format",
       });
     }
-    
-    // Get tasks created by this user
-    const tasks = await Task.find({ 
-      createdBy: userId,
-      isDeleted: false 
-    })
+
+    const tasks = await Task.find({ createdBy: userId, isDeleted: false })
       .populate('createdBy', 'name email position department')
-      .populate('assignedTo', 'name email position department')
-      .sort({ createdAt: -1 });
-    
+      .populate('assignedTo', 'name email position department');
+
+    console.log(`getTasksByUserCreated: Found ${tasks.length} tasks for userId: ${userId}`);
     res.status(200).json({
       success: true,
-      count: tasks.length,
-      tasks
+      tasks,
     });
   } catch (error) {
-    logger.error(`Error getting tasks by creator: ${error.message}`);
+    console.error('getTasksByUserCreated: Error fetching tasks:', error);
     res.status(500).json({
       success: false,
-      message: 'Error retrieving tasks',
-      error: error.message
+      message: "Failed to load tasks. Please try again later.",
+      error: error.message,
     });
   }
 };

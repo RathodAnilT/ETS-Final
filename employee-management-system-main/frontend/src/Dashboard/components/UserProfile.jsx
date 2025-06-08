@@ -2,13 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import { Card, Button, Alert, Badge, Nav, Row, Col, Container } from "react-bootstrap";
 import { Spin, message } from "antd";
 import axios from "axios";
-import { FaUser, FaTasks, FaComments, FaCalendarAlt, FaCheckCircle, FaClock, FaExclamationCircle, FaBell, FaHourglassHalf } from "react-icons/fa";
+import { FaUser, FaTasks, FaComments, FaCalendarAlt, FaCheckCircle, FaClock, FaExclamationCircle, FaBell, FaHourglassHalf, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
 import getIcon from "../../utils/getIcon";
 import userContext from "../../context/userContext";
 import NotificationCenter from "./NotificationCenter";
 import UserTasks from "./UserTasks";
 import "./UserProfile.css";
+
+const getInitials = (name) => {
+  if (!name) return '';
+  const parts = name.trim().split(' ');
+  if (parts.length === 1) return parts[0][0].toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
 
 const UserProfile = ({ userId }) => {
   const { uid } = useParams();
@@ -189,24 +196,16 @@ const UserProfile = ({ userId }) => {
           <div className="modern-profile-card">
             <div className="profile-header">
               <div className="profile-image-container">
-                {user.image ? (
-                  <img
-                    src={user.image} 
-                    alt={user.name} 
-                    className="profile-image"
-                  />
-                ) : (
-                  <div className="profile-initials">
-                    {user.name.split(' ').map(name => name[0]).join('').toUpperCase()}
-                  </div>
-                )}
-                  </div>
+                <div className="profile-initials">
+                  {getInitials(user.name)}
+                </div>
+              </div>
               {isSelfProfile && (
                 <div className="profile-actions">
                   <button className="btn btn-edit" onClick={() => navigate(`/edit/${user._id}`)}>
                     {getIcon("edit")}
                   </button>
-                  </div>
+                </div>
               )}
             </div>
 
@@ -249,7 +248,28 @@ const UserProfile = ({ userId }) => {
                   </div>
                 </div>
               </div>
-                  </div>
+
+              <div className="divider"></div>
+
+              <div className="external-links-section">
+                <h4>External Links</h4>
+                <div className="links-grid">
+                  {user.githubProfile && (
+                    <a href={user.githubProfile} target="_blank" rel="noopener noreferrer" className="external-link github-link">
+                      <FaGithub /> GitHub
+                    </a>
+                  )}
+                  {user.linkedinProfile && (
+                    <a href={user.linkedinProfile} target="_blank" rel="noopener noreferrer" className="external-link linkedin-link">
+                      <FaLinkedinIn /> LinkedIn
+                    </a>
+                  )}
+                  {(!user.githubProfile && !user.linkedinProfile) && (
+                    <p className="text-muted">No external links provided.</p>
+                  )}
+                </div>
+              </div>
+            </div>
             
             {/* Show notification badge for users with pending requests */}
             {isSelfProfile && pendingRequests.length > 0 && (
@@ -270,7 +290,7 @@ const UserProfile = ({ userId }) => {
                     <FaHourglassHalf className="me-1" /> View Requests
                   </Button>
                 </Alert>
-            </div>
+              </div>
             )}
           </div>
         </Col>
@@ -279,13 +299,13 @@ const UserProfile = ({ userId }) => {
           <div className="modern-content-card">
             <div className="content-tabs">
               <Nav variant="tabs" activeKey={activeTab} onSelect={(key) => setActiveTab(key)} className="modern-tabs">
-                  <Nav.Item>
+                <Nav.Item>
                   <Nav.Link eventKey="about" className="tab-link">
                     <FaUser className="tab-icon" /> 
                     <span className="tab-text">About</span>
                   </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
+                </Nav.Item>
+                <Nav.Item>
                   <Nav.Link eventKey="tasks" className="tab-link">
                     <FaTasks className="tab-icon" /> 
                     <span className="tab-text">Tasks & Projects</span>
@@ -293,7 +313,7 @@ const UserProfile = ({ userId }) => {
                       <Badge pill bg="primary" className="ms-2">{tasks.length}</Badge>
                     )}
                   </Nav.Link>
-                  </Nav.Item>
+                </Nav.Item>
                 {canAccessNotifications && (
                   <Nav.Item>
                     <Nav.Link eventKey="notifications" className="tab-link">
@@ -305,143 +325,105 @@ const UserProfile = ({ userId }) => {
                     </Nav.Link>
                   </Nav.Item>
                 )}
-                  <Nav.Item>
+                <Nav.Item>
                   <Nav.Link eventKey="reviews" className="tab-link">
                     <FaComments className="tab-icon" /> 
                     <span className="tab-text">Reviews & Feedback</span>
                   </Nav.Link>
-                  </Nav.Item>
-                </Nav>
+                </Nav.Item>
+              </Nav>
             </div>
 
             <div className="content-body">
-                {activeTab === "about" && (
+              {activeTab === "about" && (
                 <div className="about-content">
-                  <Row>
+                  <Row className="about-content-grid">
                     <Col md={6}>
-                      <div className="info-section">
-                        <h3 className="section-title">Personal Information</h3>
-                        <div className="info-grid">
-                          <div className="grid-item">
-                            <div className="item-label">Full Name</div>
-                            <div className="item-value">{user.name}</div>
-                          </div>
-                          
-                          <div className="grid-item">
-                            <div className="item-label">Date of Birth</div>
-                            <div className="item-value">
-                              {user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : 'Not specified'}
-                        </div>
+                      <div className="grid-item">
+                        <div className="item-label">Gender</div>
+                        <div className="item-value">{user.gender || 'Not specified'}</div>
                       </div>
-
-                          <div className="grid-item">
-                            <div className="item-label">Gender</div>
-                            <div className="item-value">{user.gender || 'Not specified'}</div>
-                          </div>
-                          
-                          <div className="grid-item">
-                            <div className="item-label">Address</div>
-                            <div className="item-value">{user.address || 'Not specified'}</div>
-                          </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Date of Birth</div>
+                        <div className="item-value">
+                          {user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : 'Not specified'}
                         </div>
                       </div>
                     </Col>
-                    
                     <Col md={6}>
-                      <div className="info-section">
-                        <h3 className="section-title">Professional Information</h3>
-                        <div className="info-grid">
-                          <div className="grid-item">
-                            <div className="item-label">Employee ID</div>
-                            <div className="item-value">{user.employeeId}</div>
-                          </div>
-                          
-                          <div className="grid-item">
-                            <div className="item-label">Position</div>
-                            <div className="item-value">{user.position}</div>
+                      <div className="grid-item">
+                        <div className="item-label">Address</div>
+                        <div className="item-value">{user.address || 'Not specified'}</div>
                       </div>
-
-                          <div className="grid-item">
-                            <div className="item-label">Department</div>
-                            <div className="item-value">{user.department}</div>
-                          </div>
-                          
-                          <div className="grid-item">
-                            <div className="item-label">Salary</div>
-                            <div className="item-value">{user.salary ? `₹${user.salary}` : 'Not specified'}</div>
-                          </div>
-                        </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Role</div>
+                        <div className="item-value">{user.role}</div>
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Position</div>
+                        <div className="item-value">{user.position}</div>
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Martial Status</div>
+                        <div className="item-value">{user.maritalStatus || 'Not specified'}</div>
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Nationality</div>
+                        <div className="item-value">{user.nationality || 'Not specified'}</div>
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="grid-item">
+                        <div className="item-label">Blood Group</div>
+                        <div className="item-value">{user.bloodGroup || 'Not specified'}</div>
                       </div>
                     </Col>
                   </Row>
-                  
-                  <div className="info-section mt-4">
-                    <h3 className="section-title">Education & Background</h3>
-                    <p className="section-content">
-                      {user.education || 'No education details available'}
-                    </p>
-                  </div>
-                  
-                  <div className="external-links mt-4">
-                    <h3 className="section-title">External Profiles</h3>
-                    <div className="links-grid">
-                      {user.githubId && (
-                        <a 
-                          href={`https://github.com/${user.githubId}`} 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="external-link github-link"
-                        >
-                          <i className="fab fa-github"></i>
-                          <span>GitHub Profile</span>
-                        </a>
-                      )}
-                      
-                      {user.linkedInId && (
-                        <a 
-                          href={user.linkedInId.startsWith('http') ? user.linkedInId : `https://linkedin.com/in/${user.linkedInId}`} 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="external-link linkedin-link"
-                        >
-                          <i className="fab fa-linkedin"></i>
-                          <span>LinkedIn Profile</span>
-                        </a>
-                      )}
-                    </div>
-                            </div>
-                          </div>
+                </div>
               )}
               
               {activeTab === "tasks" && (
                 <div className="tasks-content">
                   <UserTasks userId={uid || userId || auth.userId} />
-                            </div>
+                </div>
               )}
               
               {activeTab === "notifications" && canAccessNotifications && (
                 <div className="notifications-content">
-                  <h4 className="section-title mb-4">
-                    <FaBell className="me-2" /> Task Approval Requests
-                    {isTaskCreator && 
-                      <span className="badge bg-primary ms-2">
-                        {isManager ? "Manager" : "Task Creator"} View
-                                  </span>
-                    }
-                  </h4>
-                  <NotificationCenter />
-                    </div>
-                )}
+                  <Alert variant="info" className="manager-notification">
+                    <h4>
+                      <FaBell className="me-2" /> 
+                      Notifications for {' '}
+                      {isSelfProfile && auth.isSuperUser && (
+                        <span className="badge bg-primary ms-2">
+                          Manager View
+                        </span>
+                      )}
+                    </h4>
+                    <NotificationCenter />
+                  </Alert>
+                </div>
+              )}
 
-                {activeTab === "reviews" && (
+              {activeTab === "reviews" && (
                 <div className="reviews-content">
                   <div className="no-data-message">
                     <FaComments className="empty-icon" />
                     <p>No reviews or feedback available at this time.</p>
                   </div>
-                  </div>
-                )}
-              </div>
+                </div>
+              )}
+            </div>
           </div>
         </Col>
       </Row>

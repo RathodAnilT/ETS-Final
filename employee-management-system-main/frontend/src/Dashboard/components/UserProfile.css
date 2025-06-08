@@ -702,40 +702,51 @@
 
 /* Contact Info */
 .contact-info {
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
 }
 
-.contact-item {
+.contact-info h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.contact-info .info-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e9ecef;
+  padding: 1rem 0;
+  border-bottom: 1px dashed #e9ecef;
 }
 
-.contact-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
+.contact-info .info-item:last-child {
   border-bottom: none;
 }
 
-.contact-item i {
-  width: 24px;
-  height: 24px;
-  background: #e9ecef;
-  border-radius: 50%;
+.contact-info .info-label {
+  font-weight: 500;
+  color: #666;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 0.75rem;
-  color: #6c757d;
+  gap: 0.6rem;
 }
 
-.contact-item span {
-  color: #2c3e50;
-  font-size: 0.875rem;
+.contact-info .info-value {
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+  flex-grow: 1;
+  word-break: break-word;
 }
 
 /* Main Content */
@@ -1035,45 +1046,69 @@
   margin-bottom: 15px;
 }
 
-.id-badge {
-  font-size: 0.8rem;
-  padding: 5px 10px;
+.profile-id .id-badge {
+  padding: 0.6em 0.9em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 15px;
+  background-color: #3498db !important;
+  box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
 }
 
 .divider {
-  height: 1px;
-  background: #e9ecef;
-  margin: 15px 0;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
 }
 
 .contact-info {
-  margin-top: 15px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
 }
 
 .contact-info h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #f0f0f0;
 }
 
-.info-item {
-  margin-bottom: 12px;
+.contact-info .info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px dashed #e9ecef;
 }
 
-.info-label {
-  color: #6c757d;
-  font-size: 0.8rem;
-  margin-bottom: 3px;
+.contact-info .info-item:last-child {
+  border-bottom: none;
 }
 
-.info-value {
-  color: #333;
+.contact-info .info-label {
   font-weight: 500;
-  font-size: 0.95rem;
+  color: #666;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
-/* Tabs and Content */
+.contact-info .info-value {
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+  flex-grow: 1;
+  word-break: break-word;
+}
+
+/* Main Content Card (Right Column) */
 .modern-content-card {
   background: #fff;
   border-radius: 10px;
@@ -1195,29 +1230,33 @@
 /* External Links */
 .links-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .external-link {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  color: #333;
+  padding: 0.8rem 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  color: #2c3e50;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  border: 1px solid #eef2f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .external-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #eef2f5;
 }
 
 .external-link i {
-  font-size: 1.2rem;
-  margin-right: 10px;
+  font-size: 1.3rem;
+  margin-right: 0.8rem;
 }
 
 .github-link i {
@@ -1226,6 +1265,23 @@
 
 .linkedin-link i {
   color: #0077b5;
+}
+
+.external-links-section h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eef2f5; /* Subtle separator */
+}
+
+/* No Data Message for External Links */
+.external-links-section .text-muted {
+  text-align: center;
+  padding: 1rem 0;
+  color: #7f8c8d;
+  font-size: 1rem;
 }
 
 /* Tasks Tab */

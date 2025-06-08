@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Form, Input, Button, Upload, message, Card, Spin } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Form, Input, Button, message, Card, Spin } from "antd";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import userContext from "../../context/userContext";
@@ -14,7 +13,6 @@ const EditEmployee = () => {
   const navigate = useNavigate();
   const { uid } = useParams();
   const [userData, setUserData] = useState(null);
-  const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -37,22 +35,10 @@ const EditEmployee = () => {
           aadhar: response.data.user.aadhar,
           panNo: response.data.user.panNo,
         });
-
-        // Set initial file list if user has an image
-        if (response.data.user.image && response.data.user.image !== "uploads/images/user-default.jpg") {
-          setFileList([
-            {
-              uid: '-1',
-              name: 'profile.jpg',
-              status: 'done',
-              url: `${process.env.REACT_APP_BACKEND_URL}/${response.data.user.image}`,
-            },
-          ]);
-        }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
         message.error("Failed to load user data");
-      } finally {
         setLoading(false);
       }
     };
@@ -65,40 +51,22 @@ const EditEmployee = () => {
   const onFinish = async (values) => {
     try {
       setUploading(true);
-    const formData = new FormData();
-
-      // Add all form fields to FormData
-      formData.append("name", values.username);
-      formData.append("email", values.email);
-      formData.append("position", values.position);
-      formData.append("phone", values.phone);
-      formData.append("address", values.address);
-      formData.append("aadhar", values.aadhar);
-      formData.append("panNo", values.panNo);
-
-      // Add image if it exists
-      if (fileList.length > 0 && fileList[0].originFileObj) {
-        const file = fileList[0].originFileObj;
-        // Validate file size (5MB limit)
-        if (file.size > 5 * 1024 * 1024) {
-          message.error("Image size should be less than 5MB");
-          return;
-        }
-        // Validate file type
-        if (!file.type.startsWith('image/')) {
-          message.error("Please upload an image file");
-          return;
-        }
-        formData.append("image", file);
-    }
-
+      
       const response = await axios({
         method: 'patch',
         url: `${process.env.REACT_APP_BACKEND_URL}/api/users/editEmployee/${uid}`,
-        data: formData,
+        data: {
+          name: values.username,
+          email: values.email,
+          position: values.position,
+          phone: values.phone,
+          address: values.address,
+          aadhar: values.aadhar,
+          panNo: values.panNo
+        },
         headers: {
           'Authorization': `Bearer ${auth.token}`,
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
       });
 
@@ -125,24 +93,6 @@ const EditEmployee = () => {
     message.error("Please provide all required data!");
   };
 
-  const handleFileChange = ({ fileList }) => {
-    setFileList(fileList);
-  };
-
-  const beforeUpload = (file) => {
-    const isImage = file.type.startsWith('image/');
-    if (!isImage) {
-      message.error('You can only upload image files!');
-      return false;
-    }
-    const isLt5M = file.size / 1024 / 1024 < 5;
-    if (!isLt5M) {
-      message.error('Image must be smaller than 5MB!');
-      return false;
-    }
-    return false; // Prevent auto upload
-  };
-
   if (loading) {
     return (
       <div className="loading-container">
@@ -159,29 +109,29 @@ const EditEmployee = () => {
         <p>Update your profile information below</p>
       </div>
 
-        <Form
+      <Form
         form={form}
         name="editEmployee"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
         layout="vertical"
-        >
-          <Form.Item
-            name="username"
+      >
+        <Form.Item
+          name="username"
           label="Full Name"
           rules={[{ required: true, message: "Please input your name!" }]}
-          >
+        >
           <Input placeholder="Enter your full name" />
-          </Form.Item>
+        </Form.Item>
 
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
+        <Form.Item
+          name="email"
+          label="Email"
+          rules={[
             { required: true, message: "Please input your email!" },
             { type: "email", message: "Please enter a valid email!" },
-            ]}
-          >
+          ]}
+        >
           <Input placeholder="Enter your email" />
         </Form.Item>
 
@@ -191,66 +141,49 @@ const EditEmployee = () => {
           rules={[{ required: true, message: "Please input your position!" }]}
         >
           <Input placeholder="Enter your position" />
-          </Form.Item>
+        </Form.Item>
 
-          <Form.Item
-            name="phone"
-            label="Phone Number"
+        <Form.Item
+          name="phone"
+          label="Phone Number"
           rules={[{ required: true, message: "Please input your phone number!" }]}
-          >
+        >
           <Input placeholder="Enter your phone number" />
-          </Form.Item>
+        </Form.Item>
 
-          <Form.Item
+        <Form.Item
           name="address"
-            label="Address"
+          label="Address"
           rules={[{ required: true, message: "Please input your address!" }]}
-          >
+        >
           <Input.TextArea rows={3} placeholder="Enter your address" />
-          </Form.Item>
+        </Form.Item>
 
-          <Form.Item
-            name="aadhar"
+        <Form.Item
+          name="aadhar"
           label="Aadhar Number"
           rules={[{ required: true, message: "Please input your Aadhar number!" }]}
-          >
+        >
           <Input placeholder="Enter your Aadhar number" />
-          </Form.Item>
+        </Form.Item>
 
-          <Form.Item
-            name="panNo"
+        <Form.Item
+          name="panNo"
           label="PAN Number"
           rules={[{ required: true, message: "Please input your PAN number!" }]}
-          >
-          <Input placeholder="Enter your PAN number" />
-          </Form.Item>
-
-          <Form.Item
-          label="Profile Photo"
-          help="Upload a profile photo (max 5MB, JPG/PNG only)"
         >
-          <Upload
-            name="image"
-            listType="picture"
-            maxCount={1}
-            fileList={fileList}
-            onChange={handleFileChange}
-            beforeUpload={beforeUpload}
-            accept="image/jpeg,image/png"
-          >
-            <Button icon={<UploadOutlined />}>Upload Photo</Button>
-            </Upload>
-          </Form.Item>
+          <Input placeholder="Enter your PAN number" />
+        </Form.Item>
 
         <Form.Item className="form-actions">
           <Button type="primary" htmlType="submit" loading={uploading}>
             Save Changes
-            </Button>
+          </Button>
           <Button onClick={() => navigate(`/user-profile/${uid}`)} className="cancel-btn">
             Cancel
-            </Button>
-          </Form.Item>
-        </Form>
+          </Button>
+        </Form.Item>
+      </Form>
     </Card>
   );
 };
