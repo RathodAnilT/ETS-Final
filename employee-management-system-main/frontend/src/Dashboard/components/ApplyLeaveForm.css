@@ -1,0 +1,52 @@
+.apply-leave-center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 80vh;
+    width: 100%;
+  }
+  
+  .apply-leave-box {
+    width: 100%;
+    max-width: 1000px; /* or 700px for wider */
+  }
+  
+  .apply-leave-header {
+    background: #2563eb;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 20px 32px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .apply-leave-card {
+    background: #fff;
+    border: 1.5px solid #e3e6ee;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 24px 0 rgba(60, 72, 88, 0.07);
+    padding: 36px 40px 32px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+  
+  @media (max-width: 700px) {
+    .apply-leave-box {
+      max-width: 99vw;
+    }
+    .apply-leave-header,
+    .apply-leave-card {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }

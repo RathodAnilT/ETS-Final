@@ -1,0 +1,129 @@
+.leave-page-container {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.leave-grid {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.leave-card {
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.leave-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.leave-card.approved {
+  border-left: 4px solid #52c41a;
+  background-color: #f6ffed;
+}
+
+.leave-card.rejected {
+  border-left: 4px solid #ff4d4f;
+  background-color: #fff2f0;
+}
+
+.leave-card.pending {
+  border-left: 4px solid #faad14;
+  background-color: #fffbe6;
+}
+
+.leave-card .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 8px 12px;
+  min-height: 40px;
+}
+
+.leave-card .ant-card-body {
+  padding: 12px;
+}
+
+.leave-details {
+  padding: 8px 0;
+  font-size: 0.85rem;
+}
+
+.leave-details strong {
+  color: #262626;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.leave-details .text-muted {
+  color: #8c8c8c !important;
+  font-size: 0.8rem;
+}
+
+/* Status badge styles */
+.leave-card .ant-badge-status-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.leave-card .ant-badge-status-text {
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+/* Pagination styles */
+.ant-pagination {
+  margin-top: 20px;
+}
+
+.ant-pagination-item {
+  border-radius: 4px;
+}
+
+.ant-pagination-item-active {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.ant-pagination-item-active a {
+  color: #fff;
+}
+
+/* Filter dropdown styles */
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+.dropdown-item {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f7fa;
+}
+
+/* Empty state styles */
+.ant-card {
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .leave-page-container {
+    padding: 10px;
+  }
+  
+  .leave-grid {
+    padding: 10px;
+  }
+  
+  .leave-card {
+    margin-bottom: 16px;
+  }
+} 

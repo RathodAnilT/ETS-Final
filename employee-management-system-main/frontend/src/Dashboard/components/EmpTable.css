@@ -1,0 +1,147 @@
+.employee-table-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.table-controls {
+  margin-bottom: 15px;
+}
+
+.search-input {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-input .input-group-text {
+  background-color: white;
+  border-right: none;
+  padding-right: 0;
+}
+
+.search-input .form-control {
+  border-left: none;
+  padding-left: 5px;
+  box-shadow: none;
+}
+
+.search-input .form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.table-responsive {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.employee-table {
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.employee-table thead th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  padding: 12px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-top: none;
+  border-bottom: 2px solid #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.employee-table thead th:hover {
+  background-color: #e9ecef;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sort-icon {
+  font-size: 0.8rem;
+  color: #adb5bd;
+  margin-left: 5px;
+}
+
+.sort-icon.active {
+  color: #4b6cb7;
+}
+
+.employee-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.employee-table tbody tr:hover {
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+.employee-table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-top: none;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.employee-name-link {
+  color: #4b6cb7;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.employee-name-link:hover {
+  color: #182848;
+  text-decoration: underline;
+}
+
+.table-footer {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .employee-table td, 
+  .employee-table th {
+    padding: 10px 12px;
+  }
+  
+  .employee-table {
+    min-width: 500px;
+  }
+  
+  .th-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-icon {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-controls {
+    margin-bottom: 10px;
+  }
+  
+  .table-footer {
+    text-align: center;
+  }
+} 
+ 

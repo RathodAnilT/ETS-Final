@@ -1,0 +1,383 @@
+/* Dashboard Container Styles */
+.dashboard-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.add-employee-btn,
+.analytics-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.add-employee-btn {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  border: none;
+}
+
+.analytics-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border: none;
+}
+
+.add-employee-btn:hover,
+.analytics-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+/* Card Styles */
+.welcome-card,
+.leave-card,
+.tasks-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-icon {
+  color: #007bff;
+}
+
+/* Stats Cards */
+.stats-row {
+  margin-top: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon-wrapper.employees {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.stat-icon-wrapper.leaves {
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.stat-icon-wrapper.tasks {
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-icon-wrapper.employees .stat-icon {
+  color: #007bff;
+}
+
+.stat-icon-wrapper.leaves .stat-icon {
+  color: #28a745;
+}
+
+.stat-icon-wrapper.tasks .stat-icon {
+  color: #ffc107;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* Loading State */
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.dashboard-loading p {
+  color: #6c757d;
+  margin-top: 1rem;
+}
+
+/* Error Container */
+.error-container {
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  color: #842029;
+}
+
+/* Notification Permission Card */
+.notification-permission-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-right: 1rem;
+}
+
+.notification-text {
+  flex: 1;
+}
+
+.notification-text h5 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.notification-text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Fix welcome card to ensure notification bar appears properly */
+.welcome-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: visible;
+  margin-bottom: 1.5rem;
+  height: auto;
+  min-height: 200px;
+}
+
+/* Tasks Card */
+.my-tasks-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  height: auto;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-tasks-card .section-title {
+  margin-bottom: 1rem;
+}
+
+.my-tasks-card .user-tasks-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pending Approvals Card */
+.pending-approvals-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.pending-approvals-list {
+  margin-top: 1rem;
+}
+
+.approval-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  margin-bottom: 0.75rem;
+  border-left: 3px solid #007bff;
+}
+
+.approval-details {
+  flex: 1;
+}
+
+.approval-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.approval-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.view-all-link {
+  display: inline-block;
+  color: #007bff;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-employee-btn {
+    margin-top: 1rem;
+  }
+
+  .stat-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .stat-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .welcome-card,
+  .leave-card,
+  .tasks-card {
+    padding: 1rem;
+  }
+}
+
+/* Animation for stat cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Hover effects for cards */
+.welcome-card,
+.leave-card,
+.tasks-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-card:hover,
+.leave-card:hover,
+.tasks-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

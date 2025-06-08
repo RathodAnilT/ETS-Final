@@ -1,0 +1,135 @@
+.privacy-policy-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  min-height: calc(100vh - 200px); /* Ensure minimum height */
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #00ff88;
+}
+
+.privacy-header h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.privacy-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.policy-section {
+  margin-bottom: 3rem;
+}
+
+.policy-section h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #00ff88;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.policy-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.policy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.policy-icon {
+  font-size: 2rem;
+  color: #00ff88;
+  margin-bottom: 1rem;
+}
+
+.policy-card h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.policy-card p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.important-notes {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #00ff88;
+  margin-top: 2rem;
+}
+
+.important-notes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.important-notes li {
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.4;
+}
+
+.important-notes li:before {
+  content: "•";
+  color: #00ff88;
+  font-size: 1.2rem;
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+}
+
+@media (max-width: 768px) {
+  .privacy-policy-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .privacy-header h1 {
+    font-size: 2rem;
+  }
+
+  .policy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-card {
+    padding: 1.2rem;
+  }
+
+  .important-notes {
+    padding: 1rem;
+  }
+} 

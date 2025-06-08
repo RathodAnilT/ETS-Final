@@ -1,0 +1,388 @@
+.completion-review-panel {
+  margin-bottom: 2rem;
+}
+
+.completion-table {
+  font-size: 0.95rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.completion-table thead th {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  color: #495057;
+  font-weight: 600;
+  padding: 0.75rem;
+}
+
+.completion-table tbody td {
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+.task-title {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.task-description {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.completion-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.completion-status:last-child {
+  margin-bottom: 0;
+}
+
+.completion-status .assignee-name {
+  font-weight: 500;
+  color: #2c3e50;
+  min-width: 120px;
+}
+
+.completion-status .badge {
+  padding: 0.5em 0.75em;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #000;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+/* Update existing styles */
+.completion-table td {
+  vertical-align: top;
+}
+
+.assignee-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.assignee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.assignee-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.assignee-status {
+  white-space: nowrap;
+}
+
+.badge {
+  padding: 0.4em 0.6em;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #000;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+@media (max-width: 768px) {
+  .assignee-list {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .assignee-item {
+    width: 100%;
+  }
+}
+
+.completion-time {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.progress-wrapper {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress {
+  height: 0.6rem;
+  border-radius: 3px;
+}
+
+.assignee-selection {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+
+.assignee-checkboxes {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Review modal */
+.review-modal .modal-content {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.review-modal .modal-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+}
+
+.review-modal .modal-body {
+  padding: 1.5rem;
+}
+
+.review-modal .modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .completion-table th,
+  .completion-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+  
+  .task-title {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .assignee-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .assignee-status {
+    margin-left: 0;
+  }
+  
+  .completion-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .completion-status .assignee-name {
+    min-width: auto;
+  }
+}
+
+.completion-time-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.completion-time-item:last-child {
+  margin-bottom: 0;
+}
+
+.completion-time-item .assignee-name {
+  font-weight: 500;
+  color: #2c3e50;
+  min-width: 100px;
+}
+
+.completion-time {
+  color: #666;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.approver-info {
+  display: block;
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
+  border-top: 1px dashed #dee2e6;
+}
+
+.approver-info small {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .completion-time-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .completion-time-item .assignee-name {
+    min-width: auto;
+  }
+  
+  .approver-info {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 1rem;
+}
+
+.pagination .page-item .page-link {
+  color: #2c3e50;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.75rem;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.reviewer-info:last-child {
+  margin-bottom: 0;
+}
+
+.reviewer-info .assignee-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.reviewer-details {
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.reviewer-details small {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .reviewer-info {
+    padding: 0.25rem;
+  }
+}
+
+.status-info {
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.status-info:last-child {
+  margin-bottom: 0;
+}
+
+.status-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.status-details .badge {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  padding: 0.5em 0.75em;
+}
+
+.status-details small {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .status-info {
+    padding: 0.25rem;
+  }
+} 

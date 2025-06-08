@@ -1,0 +1,7076 @@
+.task-tracker-container {
+  padding: 20px;
+  background-color: #f5f7f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header styles */
+.task-header {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  width: 100%;
+}
+
+.task-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.task-header .text-muted {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.btn-create-task-container {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+.empty-space {
+  flex: 1 1 auto;
+}
+
+.btn-create-task {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(78, 115, 223, 0.25);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-create-task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(33, 150, 243, 0.4);
+}
+
+.title-container {
+  flex: 0 0 auto;
+  width: 25%;
+  text-align: right;
+}
+
+.title-container h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.title-container h2 svg {
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.title-container .text-muted {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Task Stats Cards - Single Row Alignment */
+.task-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+
+.task-stats>div {
+  flex: 1;
+  padding: 0;
+  animation: cardAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.task-stats>div:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.task-stats>div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.task-stats>div:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.task-stats>div:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.task-stats>div:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* Dashboard cards with colors exactly matching the image */
+.dashboard-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card h3 svg {
+  font-size: 1rem;
+}
+
+.dashboard-card .icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.dashboard-card .content {
+  flex-grow: 1;
+}
+
+/* Specific card colors matching the image exactly */
+.dashboard-card:nth-child(1) .icon-wrapper {
+  background-color: #e3f2fd;
+  color: #2196f3;
+}
+
+.dashboard-card:nth-child(2) .icon-wrapper {
+  background-color: #e3f4fb;
+  color: #00bcd4;
+}
+
+.dashboard-card:nth-child(3) .icon-wrapper {
+  background-color: #ffeee6;
+  color: #ff5722;
+}
+
+.dashboard-card:nth-child(4) .icon-wrapper {
+  background-color: #fff9e6;
+  color: #ffc107;
+}
+
+.stats-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 5px;
+  color: #333;
+}
+
+/* Task stats chart (circular chart) - improved styling */
+.task-stats-chart {
+  position: relative;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 160px;
+  height: 160px;
+}
+
+.donut-chart {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.chart-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: white;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.chart-count {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.chart-label-text {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.chart-segment {
+  transition: all 0.3s ease;
+  stroke-width: 4;
+}
+
+.chart-segment:hover {
+  filter: brightness(1.1);
+  stroke-width: 5;
+}
+
+/* Chart segment colors exactly matching the image */
+.chart-open {
+  stroke: #2196f3;
+}
+
+.chart-completed {
+  stroke: #4caf50;
+}
+
+.chart-overdue {
+  stroke: #f44336;
+}
+
+.chart-due-today {
+  stroke: #ff9800;
+}
+
+/* Chart legend */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.legend-open {
+  background-color: #2196f3;
+}
+
+.legend-completed {
+  background-color: #4caf50;
+}
+
+.legend-overdue {
+  background-color: #f44336;
+}
+
+.legend-due-today {
+  background-color: #ff9800;
+}
+
+/* Task Table Styles */
+.task-list-card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.task-list-card .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 12px 20px;
+}
+
+.task-table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.task-table {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.task-table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  border-bottom: 1px solid #dee2e6;
+  padding: 12px 16px;
+}
+
+.task-table td {
+  padding: 12px 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.task-table tr:hover {
+  background-color: #f5f7f9;
+}
+
+.task-table .action-buttons {
+  white-space: nowrap;
+}
+
+.task-title-cell {
+  max-width: 300px;
+}
+
+.task-table small {
+  font-size: 0.8rem;
+}
+
+/* Status dropdown */
+.status-dropdown {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.status-dropdown:hover,
+.status-dropdown:focus {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Due date and modified date */
+.due-date,
+.modified-date {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Overdue task row */
+.overdue-task {
+  background-color: #fff8f8;
+}
+
+/* Task Tab Navigation */
+.task-tabs {
+  border-bottom: none;
+}
+
+.task-tabs .nav-link {
+  color: #495057;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 4px;
+  font-weight: 500;
+  border-radius: 4px 4px 0 0;
+}
+
+.task-tabs .nav-link:hover {
+  color: #2196f3;
+  background-color: #f8f9fa;
+}
+
+.task-tabs .nav-link.active {
+  color: #2196f3;
+  background-color: transparent;
+  border-bottom: 2px solid #2196f3;
+}
+
+/* Form styling */
+.form-control,
+.form-select {
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  padding: 8px 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 0.25rem rgba(33, 150, 243, 0.25);
+}
+
+/* Badge styling */
+.badge {
+  font-weight: 500;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+.btn-primary:hover {
+  background-color: #1976d2;
+  border-color: #1976d2;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+  .task-stats .col-lg-2 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .btn-create-task-container,
+  .title-container {
+    width: 100%;
+  }
+
+  .empty-space {
+    display: none;
+  }
+
+  .title-container {
+    text-align: center;
+    order: 1;
+  }
+
+  .title-container h2 {
+    justify-content: center;
+  }
+
+  .btn-create-task-container {
+    order: 2;
+    width: 100%;
+  }
+
+  .btn-create-task {
+    width: 100%;
+  }
+
+  .task-header button {
+    margin-top: 16px;
+  }
+
+  .task-stats .col-lg-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .task-table th,
+  .task-table td {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .task-stats .col-lg-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Task Details Modal - Improved Styling */
+.task-details-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.task-details-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.task-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.task-details-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.close-button:hover {
+  color: #343a40;
+}
+
+.task-details-content {
+  padding: 20px;
+}
+
+.task-details-section {
+  margin-bottom: 20px;
+}
+
+.task-details-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.task-details-section p {
+  margin: 0;
+  color: #212529;
+}
+
+.task-description {
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.task-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Status badges styling */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.status-completed {
+  background-color: #198754;
+}
+
+.status-completion_requested {
+  background-color: #0dcaf0;
+}
+
+.status-on_hold {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.status-incomplete {
+  background-color: #0d6efd;
+}
+
+/* Priority badges styling */
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.priority-high {
+  background-color: #dc3545;
+}
+
+.priority-medium {
+  background-color: #fd7e14;
+}
+
+.priority-low {
+  background-color: #198754;
+}
+
+.assigned-employees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.assigned-employee-card {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.employee-initials {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #2196f3;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.employee-info {
+  flex: 1;
+}
+
+.employee-name {
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.employee-department {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* Employee Select styling */
+.employee-select {
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.employee-select option {
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+/* Prevent text overflow in select */
+.employee-select option {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+
+/* Notification Alert */
+.notification-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border-left: 4px solid;
+  animation: fadeInRight 0.3s ease-out forwards;
+}
+
+.notification-alert.alert-success {
+  border-left-color: #28a745;
+}
+
+.notification-alert.alert-warning {
+  border-left-color: #ffc107;
+}
+
+.notification-alert.alert-danger {
+  border-left-color: #dc3545;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Task Barcode Card */
+.task-barcode-card {
+  border: 1px solid #e5e9f2;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  min-width: 350px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.barcode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e9f2;
+  margin-bottom: 15px;
+}
+
+.task-barcode-id {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.task-barcode-priority {
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.barcode-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.barcode-details {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.barcode-due-date,
+.barcode-assigned,
+.barcode-department {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.print-barcode-btn {
+  font-size: 1.05rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: auto;
+  min-width: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Task Details Modal - Improved Styling */
+.task-details-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.task-detail-title .task-id {
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.task-detail-header {
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-title-display {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.task-priority {
+  background-color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.priority-medium {
+  background: #fff8e1;
+  color: #f57c00;
+  border-left: 4px solid #f57c00;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+/* Fix table display for task ID column */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #555;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+}
+
+/* Add more prominent styles for priority badges in table */
+.task-table .priority-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-table .priority-high {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 3px solid #c62828;
+}
+
+.task-table .priority-medium {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-left: 3px solid #f57c00;
+}
+
+.task-table .priority-low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 3px solid #2e7d32;
+}
+
+/* Center task description */
+.task-description {
+  background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* Fix modal dialog centering */
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 3.5rem) !important;
+  margin: 0 auto !important;
+}
+
+.modal-dialog.task-detail-modal {
+  margin: 1.75rem auto;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .task-detail-modal .modal-content {
+    max-height: 85vh;
+  }
+
+  .task-detail-header,
+  .task-description {
+    width: 95%;
+  }
+}
+
+/* Task Barcode Section */
+#task-barcode-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #dee2e6;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 576px) {
+  .task-metadata {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date-label {
+    width: 100%;
+  }
+}
+
+/* Restyled Badges for consistency */
+.priority-high,
+.priority-medium,
+.priority-low {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Task table styles */
+.task-table td {
+  vertical-align: middle;
+}
+
+.task-table .task-title-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add specific style for the task ID cell */
+.task-table td:nth-child(2) {
+  font-family: monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Task detail modal - Enhanced styling */
+.task-detail-modal {
+  max-width: 800px;
+}
+
+.task-detail-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.task-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-detail-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  width: 100%;
+}
+.custom-form-control,
+.custom-employee-select,
+.custom-form-control:focus,
+.custom-employee-select:focus {
+  background: transparent !important;   /* Remove white background */
+  border-radius: 0 !important;          /* Remove rounded corners */
+  box-shadow: none !important;          /* Remove any shadow */
+  border: 1px solid #e0e0e0 !important; /* Keep a subtle border */
+  transition: border-color 0.2s;
+}
+/* --- FORCE REMOVE inner white rectangle and shadow from form fields and card --- */
+.custom-task-card,
+.custom-task-card * {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.custom-form-control,
+.custom-employee-select,
+.custom-form-control:focus,
+.custom-employee-select:focus {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #222 !important;
+}
+
+.custom-task-card {
+  border: 1.5px solid #e3e6ee !important;
+  padding: 36px 40px 32px 40px !important;
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+/* Add border to "Back to Dashboard" button */
+.custom-btn.custom-btn-outline,
+button.custom-btn-outline {
+  border: 1.5px solid #bfc5d2 !important;
+  background: #f6f7fa !important;
+  color: #222 !important;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.custom-btn.custom-btn-outline:hover,
+button.custom-btn-outline:hover {
+  background: #e9ecf3 !important;
+  border-color: #4e73df !important;
+  color: #224abe !important;
+}
+
+/* Add border to "Cancel" button */
+.custom-btn.custom-btn-secondary,
+button.custom-btn-secondary {
+  border: 1.5px solid #bfc5d2 !important;
+  background: #f6f7fa !important;
+  color: #222 !important;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.custom-btn.custom-btn-secondary:hover,
+button.custom-btn-secondary:hover {
+  background: #e9ecf3 !important;
+  border-color: #4e73df !important;
+  color: #224abe !important;
+}
+/* Create Task button: strong blue, visible, with border */
+.custom-btn.custom-btn-primary,
+button.custom-btn-primary {
+  background: #2563eb !important;         /* Strong blue */
+  color: #fff !important;
+  border: 2px solid #2563eb !important;   /* Blue border */
+  border-radius: 4px !important;
+  font-weight: 600;
+  box-shadow: none !important;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.custom-btn.custom-btn-primary:hover,
+button.custom-btn-primary:hover {
+  background: #1742a0 !important;         /* Darker blue on hover */
+  border-color: #1742a0 !important;
+  color: #fff !important;
+}
+/* 1. Card border */
+.custom-task-card {
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(60, 72, 88, 0.07);
+  background: #fff;
+  padding: 36px 40px 32px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 2. Red labels */
+.custom-form-label,
+.custom-task-card label {
+  color: #e53935 !important;
+  font-weight: 600;
+}
+
+/* 3. Gray "Back to Dashboard" button */
+.custom-btn.custom-btn-outline,
+button.custom-btn-outline {
+  background: #e0e0e0 !important;
+  color: #222 !important;
+  border: 1.5px solid #bfc5d2 !important;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.custom-btn.custom-btn-outline:hover,
+button.custom-btn-outline:hover {
+  background: #bdbdbd !important;
+  border-color: #888 !important;
+  color: #222 !important;
+}
+.dashboard-main-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    align-items: flex-start;
+  gap: 32px;
+    width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+}
+
+.dashboard-tasks-col {
+  flex: 2 1 0;
+  min-width: 0;
+}
+
+.dashboard-chart-col {
+  flex: 1 1 320px;
+  min-width: 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 900px) {
+  .dashboard-main-row {
+  flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .dashboard-chart-col {
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 24px;
+  }
+}
